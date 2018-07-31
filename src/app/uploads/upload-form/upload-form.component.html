@@ -1,3 +1,48 @@
-<p>
-  upload-form works!
-</p>
+<h4>File Upload</h4>
+
+<div class="row">
+  <div *ngIf="currentUpload">
+    <div class="progress">
+      <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+    </div>
+    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+  </div>
+</div>
+
+
+<div class="container py-2 px-4">
+  <div class="row">
+    <div class="formm-group">
+      <label>
+        <input type="file" (change)="detectFiles($event)">
+      </label>
+
+      <button
+        class="btn btn-primary"
+        [disabled]="!selectedFiles"
+        (click)="uploadSingle()">
+
+        Upload Single
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label>
+        <input type="file" (change)="detectFiles($event)" multiple>
+      </label>
+
+      <button
+        class="btn btn-primary"
+        [disabled]="!selectedFiles"
+        (click)="uploadMulti()">
+
+        Upload Multiple
+      </button>
+
+    </div>
+  </div>
+</div>
+
+

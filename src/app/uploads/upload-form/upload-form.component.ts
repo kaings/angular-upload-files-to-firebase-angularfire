@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UploadService } from '../shared/upload.service';
+import { Upload } from '../shared/upload';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-upload-form',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadFormComponent implements OnInit {
 
-  constructor() { }
+  selectedFiles: FileList;
+  currentUpload: Upload;
+
+  constructor(private upSvc: UploadService) { }
 
   ngOnInit() {
+
   }
 
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadSingle() {
+
+  }
+
+  uploadMulti() {
+
+  }
 }
