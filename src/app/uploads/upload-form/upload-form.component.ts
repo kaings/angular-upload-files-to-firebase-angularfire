@@ -21,6 +21,7 @@ export class UploadFormComponent implements OnInit {
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
+    console.log('selected files...', this.selectedFiles);
   }
 
   uploadSingle() {

@@ -7,9 +7,10 @@ import {environment} from '../environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   ngOnInit() {
-    firebase.initializeApp(environment.firebaseConfig);
+    // Duplication, since it is initialized in the app.module already
+    // firebase.initializeApp(environment.firebaseConfig);
   }
 }
