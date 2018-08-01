@@ -50,7 +50,8 @@ export class UploadService {
 
   // write the file details (defined in Upload class) to the realtime database
   private saveFileData(upload: Upload) {
-    this.db.list(`${this.basePath}/`).push(upload);
+    const dataKey = this.db.list(`${this.basePath}/`).push(upload);
+    console.log('key... ', dataKey.key);
   }
 
 }
