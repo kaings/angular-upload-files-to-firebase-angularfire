@@ -34,6 +34,7 @@ export class UploadService {
               console.log('download URL is... ', dlURL)
               upload.url = dlURL;
               upload.name = upload.file.name;
+              this.saveFileData(upload);
             }
           )
           .catch(
@@ -47,6 +48,9 @@ export class UploadService {
     );
   }
 
-
+  // write the file details (defined in Upload class) to the realtime database
+  private saveFileData(upload: Upload) {
+    this.db.list(`${this.basePath}/`).push(upload);
+  }
 
 }
