@@ -10,7 +10,7 @@ export class UploadService {
   constructor(private db: AngularFireDatabase) { }
 
   private basePath: string = '/uploads';
-  uploads: FirebaseListObservable<Upload>;
+  uploads: FirebaseListObservable<Upload[]>;
 
   pushUpload(upload: Upload) {
     const storageRef = firebase.storage().ref();
@@ -34,6 +34,7 @@ export class UploadService {
               console.log('download URL is... ', dlURL)
               upload.url = dlURL;
               upload.name = upload.file.name;
+              console.log('uploaded file details... ', upload);
               this.saveFileData(upload);
             }
           )
@@ -42,7 +43,6 @@ export class UploadService {
               console.log('failed getting download URL... ', error);
             }
           );
-
       }
 
     );
