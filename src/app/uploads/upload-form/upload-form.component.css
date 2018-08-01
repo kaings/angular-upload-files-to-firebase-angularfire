@@ -1,4 +1,4 @@
-.container {
+.container.frame {
   border: 1px solid darkblue;
   border-radius: 5px;
 }

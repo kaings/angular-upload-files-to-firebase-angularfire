@@ -25,7 +25,9 @@ export class UploadFormComponent implements OnInit {
   }
 
   uploadSingle() {
-
+    const file = this.selectedFiles.item(0);
+    this.currentUpload = new Upload(file);
+    this.upSvc.pushUpload(this.currentUpload);
   }
 
   uploadMulti() {

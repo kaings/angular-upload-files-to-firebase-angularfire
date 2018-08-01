@@ -1,18 +1,26 @@
-<h4>File Upload</h4>
 
-<div class="row">
-  <div *ngIf="currentUpload">
-    <div class="progress">
-      <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+<div class="container">
+  <div class="form-group">
+    <h4>File Upload</h4>
+
+
+    <div *ngIf="currentUpload">
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+      </div>
+      Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
     </div>
-    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+
+    <div *ngIf="currentUpload?.url">
+      <button class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </div>
 
 
-<div class="container py-2 px-4">
+<div class="container py-2 px-4 frame">
   <div class="row">
-    <div class="formm-group">
+    <div class="form-group">
       <label>
         <input type="file" (change)="detectFiles($event)">
       </label>
