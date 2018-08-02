@@ -51,7 +51,36 @@ export class UploadService {
   // write the file details (defined in Upload class) to the realtime database
   private saveFileData(upload: Upload) {
     const dataKey = this.db.list(`${this.basePath}/`).push(upload);
+    console.log('dataKey... ', dataKey);
     console.log('key... ', dataKey.key);
+  }
+
+
+  /* dummy deleteUpload -- for reference */
+  private deleteUpload(upload: Upload) {
+    this.deleteFileData(upload.$key)
+      .then(
+        () => {
+          this.deleteFileStorage(upload.name);
+        }
+      )
+      .catch(
+        (error) => {
+          console.log('error deleting file...', error);
+        }
+      )
+  }
+
+  // delete the file details from realtime db
+  private deleteFileData(key: string) {
+    return this.db.list(`${this.basePath}`).remove(key);
+  }
+
+  // Firebase files must have unique names in their respective storage dir
+  // So the name serves as a unique key
+  private deleteFileStorage(name: string) {
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`${this.basePath}/${name}`).delete();
   }
 
 }
