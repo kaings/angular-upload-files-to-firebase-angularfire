@@ -50,9 +50,18 @@ export class UploadService {
 
   // write the file details (defined in Upload class) to the realtime database
   private saveFileData(upload: Upload) {
-    const dataKey = this.db.list(`${this.basePath}/`).push(upload);
-    console.log('dataKey... ', dataKey);
-    console.log('key... ', dataKey.key);
+
+    /* using angularFire */
+    const data = this.db.list(`${this.basePath}/`).push(upload);
+    console.log('data... ', data);
+    console.log('key... ', data.key);
+
+    /* using firebase SDK */
+    /*
+    const dbRef = firebase.database().ref(`${this.basePath}/`).push(upload);
+    console.log('dbRef... ', dbRef);
+    console.log('key... ', dbRef.key);
+    */
   }
 
 
@@ -68,7 +77,7 @@ export class UploadService {
         (error) => {
           console.log('error deleting file...', error);
         }
-      )
+      );
   }
 
   // delete the file details from realtime db
