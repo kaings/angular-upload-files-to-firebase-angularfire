@@ -51,12 +51,12 @@ export class UploadService {
   // write the file details (defined in Upload class) to the realtime database
   private saveFileData(upload: Upload) {
 
-    /* using angularFire */
+    /* using angularFire - as long as firebase web setup is initialized, auth token is not necessary? */
     const data = this.db.list(`${this.basePath}/`).push(upload);
     console.log('data... ', data);
     console.log('key... ', data.key);
 
-    /* using firebase SDK */
+    /* using firebase SDK - auth token is NEEDED */
     /*
     const dbRef = firebase.database().ref(`${this.basePath}/`).push(upload);
     console.log('dbRef... ', dbRef);
